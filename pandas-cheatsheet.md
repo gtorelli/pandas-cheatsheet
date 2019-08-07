@@ -87,62 +87,62 @@ df['c'].value_counts().sort_index()
 df['c'].value_counts()
 
 ### Conta quantos valores faltantes
-import pandas as pd
-import numpy as np
+import pandas as pd  
+import numpy as np  
 
-df = pd.DataFrame({ 'id': [1,2,3], 'c1':[0,0,np.nan], 'c2': [np.nan,1,1]})
-df = df[['id', 'c1', 'c2']]
-df['num_nulls'] = df[['c1', 'c2']].isnull().sum(axis=1)
-df.head()
+df = pd.DataFrame({ 'id': [1,2,3], 'c1':[0,0,np.nan], 'c2': [np.nan,1,1]})  
+df = df[['id', 'c1', 'c2']]  
+df['num_nulls'] = df[['c1', 'c2']].isnull().sum(axis=1)  
+df.head()  
 
 ### Selecionar linhas com ID especifico
-df_filter = df['ID'].isin(['A001','C022',...])
-df[df_filter]
+df_filter = df['ID'].isin(['A001','C022',...])  
+df[df_filter]  
 
 ### Separar por ponto de corte do Percentil
-import numpy as np
-cut_points = [np.percentile(df['c'], i) for i in [50, 80, 95]]
-df['group'] = 1
-for i in range(3):
-    df['group'] = df['group'] + (df['c'] < cut_points[i])
-#or <= cut_points[i]
+import numpy as np  
+cut_points = [np.percentile(df['c'], i) for i in [50, 80, 95]]  
+df['group'] = 1  
+for i in range(3):  
+    df['group'] = df['group'] + (df['c'] < cut_points[i])  
+#or <= cut_points[i]  
 
 ### Exporta para CSV
-data.to_csv('my_new_file.csv', index=None)
+data.to_csv('my_new_file.csv', index=None)  
 
 ### Enviar as 5 primeiras linhas para um arquivo CSV
-print(df[:5].to_csv())
+print(df[:5].to_csv())  
 
 ### Plot Básico
-Linha->         data['column_numerical'].plot()
-Histograma->     data['column_numerical'].hist()
+Linha->         data['column_numerical'].plot()  
+Histograma->     data['column_numerical'].hist()  
 
 ### Troca o valor da oitava linha da 'coluna_1' por 'english'
-data.loc[8, 'column_1'] = 'english'
+data.loc[8, 'column_1'] = 'english'  
 
 ### Troca todas as linhas da coluna de 'french' para 'French'
-data.loc[data['column_1']=='french', 'column_1'] = 'French'
+data.loc[data['column_1']=='french', 'column_1'] = 'French'  
 
 ### Conta ocorrências de uma coluna especifica
-data['column_1'].value_counts()
+data['column_1'].value_counts()  
 
 ### Aplica função len() para cada elemento da 'coluna_1'
-data['column_1'].map(len)
+data['column_1'].map(len)  
 
 ### Aplica operação para cada elemento da 'coluna_1'
-data['column_1'].map(len).map(lambda x: x/100).plot()
+data['column_1'].map(len).map(lambda x: x/100).plot()  
 
 ### Correlação e Scatterplot
-data.corr()
-data.corr().applymap(lambda x: int(x*100)/100)
+data.corr()  
+data.corr().applymap(lambda x: int(x*100)/100)  
 
-pd.plotting.scatter_matrix(data, figsize=(12,8))
+pd.plotting.scatter_matrix(data, figsize=(12,8))  
 
 ### JOIN (Adiciona um df em outro)
-data.merge(other_data, on=['column_1', 'column_2', 'column_3'])
+data.merge(other_data, on=['column_1', 'column_2', 'column_3']) 
 
 ### GROUP (Agrupa usando coluna de referência)
-data.groupby('column_1')['column_2'].apply(sum).reset_index()
+data.groupby('column_1')['column_2'].apply(sum).reset_index()  
 
 ### Converte coluna para o tipo data
 df = pd.DataFrame({'name': ['alice','bob','charlie'], date_of_birth': ['27/05/2001','16/02/1999','25/09/1998']})  
