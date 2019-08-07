@@ -1,84 +1,84 @@
 ### Ler dados CSV
-data = pd.read_csv('my_file.csv')
-data = pd.read_csv('my_file.csv', sep=';', encoding='latin-1', nrows=1000, skiprows=[2,5])
+data = pd.read_csv('my_file.csv')  
+data = pd.read_csv('my_file.csv', sep=';', encoding='latin-1', nrows=1000, skiprows=[2,5])  
 
 ### Checar Dados
-data.shape
-data.describe()
+data.shape  
+data.describe()  
 
 ### Calcular média
-print(s.sum()/s.count())
+print(s.sum()/s.count())  
 
 ### Visualizar Dados
-5 primeiras linhas: Data.head(5)
-Colunas: data.loc[8]
-Oitavo valor da coluna_1: data.loc[8, 'column_1']
+5 primeiras linhas: Data.head(5)  
+Colunas: data.loc[8]  
+Oitavo valor da coluna_1: data.loc[8, 'column_1']  
 
 ### Move linha 4 para 6
-data.loc[range(4,6)]
+data.loc[range(4,6)]  
 
 ### Adiciona Coluna com índice específico
-starts at zero
-position = 1
-column_name = 'gender'
-column_data = pd.Series(['female','male','male'])
-df.insert(position, column_name, column_data)
+starts at zero  
+position = 1  
+column_name = 'gender'  
+column_data = pd.Series(['female','male','male'])  
+df.insert(position, column_name, column_data)  
 
 ### Adiciona Coluna
-states = pd.Series(['dc','ca','ny'])
-df['state'] = states
+states = pd.Series(['dc','ca','ny'])  
+df['state'] = states  
 
 ### Apaga  Colunas
-df.drop(columns=['age','name'],inplace=True)
+df.drop(columns=['age','name'],inplace=True)  
 
-specify the axis=0 for row, and axis=1 for column.
+specify the axis=0 for row, and axis=1 for column.  
 
-DF.drop('d', axis=0)
-DF.drop('column', axis=1)
+DF.drop('d', axis=0)  
+DF.drop('column', axis=1)  
 
 ### Filtros com operadores lógicos
-& (AND)
+& (AND)  
 ~ (NOT)  
-| (OR)
-data[data['column_1']=='french']
-data[(data['column_1']=='french') & (data['year_born']==1990)]
-data[(data['column_1']=='french') & (data['year_born']==1990) & ~(data['city']=='London')]
+| (OR)  
+data[data['column_1']=='french']  
+data[(data['column_1']=='french') & (data['year_born']==1990)]  
+data[(data['column_1']=='french') & (data['year_born']==1990) & ~(data['city']=='London')]  
 
-### Subset com sin
-data[data['column_1'].isin(['french', 'english'])]
+### Subset com sin  
+data[data['column_1'].isin(['french', 'english'])]  
 
-### Subset removendo duplicados
-d001 = dfbolhas.drop_duplicates(subset='frame', keep="first")
+### Subset removendo duplicados  
+d001 = dfbolhas.drop_duplicates(subset='frame', keep="first")  
 
-### Subset com iloc
-linhas -> df.iloc[0, 1]
-range -> df.iloc[0:3]
+### Subset com iloc  
+linhas -> df.iloc[0, 1]  
+range -> df.iloc[0:3]  
 
-### Renomeia coluna
-dfgotas = dfgotas.rename(columns={"diamEquivFA[mm]": "diamEquivFA[GOTAS]"})
+### Renomeia coluna  
+dfgotas = dfgotas.rename(columns={"diamEquivFA[mm]": "diamEquivFA[GOTAS]"})  
 
-### Copia dataframe
-df2 = df1.copy()
+### Copia dataframe  
+df2 = df1.copy()  
 
 ### Substitui valores na coluna
-level_map = {1: 'high', 2: 'medium', 3: 'low'}
-df['c_level'] = df['c'].map(level_map)
+level_map = {1: 'high', 2: 'medium', 3: 'low'}  
+df['c_level'] = df['c'].map(level_map)  
 
 ### Mostra tipo das variáveis
-df.select_dtypes(include=['float64', 'int64'])
+df.select_dtypes(include=['float64', 'int64'])  
 
 ### Criar nova coluna a partir de outras colunas utilizando uma função para filtro
-def rule(x, y):
-    if x == 'high' and y > 10:
-         return 1
-    else:
-         return 0df = pd.DataFrame({ 'c1':[ 'high' ,'high', 'low', 'low'], 'c2': [0, 23, 17, 4]})
+def rule(x, y):  
+    if x == 'high' and y > 10:  
+         return 1  
+    else:  
+         return 0df = pd.DataFrame({ 'c1':[ 'high' ,'high', 'low', 'low'], 'c2': [0, 23, 17, 4]})  
 
-df['new'] = df.apply(lambda x: rule(x['c1'], x['c2']), axis =  1)
+df['new'] = df.apply(lambda x: rule(x['c1'], x['c2']), axis =  1)  
 df.head()
 
 ### Máximo valor de duas colunasn
-df['maximum'] = df[['c1','c2']].max(axis =1)
+df['maximum'] = df[['c1','c2']].max(axis =1)  
 
 ### Mostra o estado ordenado pela coluna 'c'
 df['c'].value_counts().sort_index()
@@ -145,17 +145,19 @@ data.merge(other_data, on=['column_1', 'column_2', 'column_3'])
 data.groupby('column_1')['column_2'].apply(sum).reset_index()
 
 ### Converte coluna para o tipo data
-df = pd.DataFrame({    'name': ['alice','bob','charlie'],    'date_of_birth': ['27/05/2001','16/02/1999','25/09/1998']})[['name','date_of_birth']]df['date_of_birth'] = pd.to_datetime(df['date_of_birth'],format='%d/%m/%Y')
+df = pd.DataFrame({'name': ['alice','bob','charlie'], date_of_birth': ['27/05/2001','16/02/1999','25/09/1998']})  
+
+[['name','date_of_birth']]df['date_of_birth'] = pd.to_datetime(df['date_of_birth'],format='%d/%m/%Y')  
 
 ### Utilizando funções
-def segmentMatch(TimeCol, ResponseCol):
-  result = TimeCol/ResponseCol
-return result
+def segmentMatch(TimeCol, ResponseCol):  
+  result = TimeCol/ResponseCol  
+return result  
 
-df['NewCol'] = df.apply(lambda x: segmentMatch(x['TimeCol'], x['ResponseCol']), axis=1)
+df['NewCol'] = df.apply(lambda x: segmentMatch(x['TimeCol'], x['ResponseCol']), axis=1)  
 
 ### SITES E TUTORIAIS
-https://towardsdatascience.com/10-python-pandas-tricks-that-make-your-work-more-efficient-2e8e483808ba
-https://towardsdatascience.com/be-a-more-efficient-data-scientist-today-master-pandas-with-this-guide-ea362d27386
-http://queirozf.com/entries/pandas-dataframe-examples-column-operations
+https://towardsdatascience.com/10-python-pandas-tricks-that-make-your-work-more-efficient-2e8e483808ba  
+https://towardsdatascience.com/be-a-more-efficient-data-scientist-today-master-pandas-with-this-guide-ea362d27386  
+http://queirozf.com/entries/pandas-dataframe-examples-column-operations  
 
