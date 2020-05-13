@@ -158,6 +158,7 @@ df['NewCol'] = df.apply(lambda x: segmentMatch(x['TimeCol'], x['ResponseCol']), 
 
 ### Comprimir dataset reduzindo espaço em disco
 df.to_csv('random_data.gz', compression='gzip', index=False)
+
 df = pd.read_csv('random_data.gz')
 
 ### SITES E TUTORIAIS
