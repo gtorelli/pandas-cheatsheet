@@ -156,6 +156,10 @@ return result
 
 df['NewCol'] = df.apply(lambda x: segmentMatch(x['TimeCol'], x['ResponseCol']), axis=1)  
 
+### Comprimir dataset reduzindo espaço em disco
+df.to_csv('random_data.gz', compression='gzip', index=False)
+df = pd.read_csv('random_data.gz')
+
 ### SITES E TUTORIAIS
 https://towardsdatascience.com/10-python-pandas-tricks-that-make-your-work-more-efficient-2e8e483808ba  
 https://towardsdatascience.com/be-a-more-efficient-data-scientist-today-master-pandas-with-this-guide-ea362d27386  
