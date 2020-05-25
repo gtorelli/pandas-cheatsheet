@@ -161,6 +161,15 @@ df.to_csv('random_data.gz', compression='gzip', index=False)
 
 df = pd.read_csv('random_data.gz')
 
+### Preenche valores faltantes com zero:
+df.fillna(0)
+
+### Preenche valores faltantes com valor anterior
+df.fillna(method='bfill')
+
+### Preenche valores faltantes com proximo valor
+df.fillna(method='ffill')
+
 ### SITES E TUTORIAIS
 https://towardsdatascience.com/10-python-pandas-tricks-that-make-your-work-more-efficient-2e8e483808ba  
 https://towardsdatascience.com/be-a-more-efficient-data-scientist-today-master-pandas-with-this-guide-ea362d27386  
